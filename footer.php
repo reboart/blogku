@@ -23,10 +23,9 @@
 			?>
 		</nav>
 		<div class="site-info">
-			<span class="sep"> | </span>
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'template-blogku-fast' ), 'template-blogku-fast', '<a href="https://reboart.com">reboart</a>' );
+				printf( esc_html__( '%1$s  |  %2$s.', 'template-blogku-fast' ), '2020', '<a href="https://reboart.com">BlogKu</a>' );
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

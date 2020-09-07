@@ -127,8 +127,8 @@ function id_pagination() {
         'format' => '?paged=%#%',
         'current' => max(1, get_query_var('paged')),
 	'prev_next'          => true,
-	'prev_text'          => __('«'),
-	'next_text'          => __('»'),
+	'prev_text'          => __('«««'),
+	'next_text'          => __('»»»'),
 	'type'               => 'flex',
 	'add_fragment'       => '',
 	'before_page_number' => '',
@@ -174,6 +174,18 @@ function template_blogku_fast_widgets_init() {
 			'name'          => esc_html__( 'Sidebar Sticky', 'template-blogku-fast' ),
 			'id'            => 'sidebar-sticky',
 			'description'   => esc_html__( 'Add widgets here.', 'template-blogku-fast' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+
+			'name'          => esc_html__( 'Header Ads', 'template-blogku-fast' ),
+			'id'            => 'header-ads',
+			'description'   => esc_html__( 'Add widgets Ads here.', 'template-blogku-fast' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',

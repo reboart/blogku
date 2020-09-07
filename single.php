@@ -31,7 +31,7 @@ get_header();
 			<li><span> » </span><?php the_category(',');?></li>
 	    </section><!-- End Breadcrumbs -->
 
-		<main id="primary" class="site-main">
+		<main id="primary" class="site-main-single">
 
 			<?php
 			while ( have_posts() ) :
@@ -46,6 +46,42 @@ get_header();
 					)
 				);
 
+
+					$orig_post = $post;
+						global $post;
+						$categories = get_the_category($post->ID);
+							if ($categories) {
+							$category_ids = array();
+							foreach($categories as $individual_category) {
+							$category_ids[] = $individual_category->term_id;
+							};
+							$args=array(
+							'category__in' => $category_ids,
+							'post__not_in' => array($post->ID),
+							'posts_per_page'=> 4,   // Jumlah yang ditampilkan
+							'ignore_sticky_posts'=>1,
+							'orderby' => 'rand'  // Tampilan Random / Acak
+							);
+							$my_query = new wp_query( $args );
+							if( $my_query->have_posts() ) {
+							echo '<h4 class="title-relate">Related Post :</h4><div class="container relatepost" >';
+							while( $my_query->have_posts() ) {
+							$my_query->the_post();?>
+										
+								<div class="relatedthumb">
+								    <a rel="external" href="<?php the_permalink()?>"><?php the_post_thumbnail(array(150,150)); ?><br />
+								    <?php the_title(); ?>
+								    </a>
+								</div>
+				        
+							
+				            
+							<?php }
+							echo '</div>';
+							} };
+							$post = $orig_post;
+							wp_reset_query();
+
 				// If comments are open or we have at least one comment, load up the comment template.
 				if ( comments_open() || get_comments_number() ) :
 					comments_template();
@@ -53,8 +89,6 @@ get_header();
 
 			endwhile; // End of the loop.
 			?>
-
-
 		</main><!-- #main -->
 	</div>
 

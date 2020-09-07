@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="thumbnail">
 			<?php template_blogku_fast_post_thumbnail(); ?>
-		</div>
+		</div> 
 		<div class="content">
 			<header class="entry-header">
 				<?php
